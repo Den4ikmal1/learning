@@ -11,5 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
+/public
+app/assets
 
 config/database.yml

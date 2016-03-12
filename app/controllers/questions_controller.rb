@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
- 	@question = Question.new 	
+ 	   @question = Question.new 	
   end
 
   def edit
@@ -31,9 +31,9 @@ class QuestionsController < ApplicationController
 
   def update
   	if @question.update_attributes(question_params)
-  	redirect_to @question
+  	  redirect_to @question
   	else 
-  		render :edit
+  	  render :edit
   	end
   end
 

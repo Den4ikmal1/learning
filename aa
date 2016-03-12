@@ -1,0 +1,23 @@
+[33mcommit 39511b32772d35970a8cc79a504f6f61cd9e8410[m
+Author: Den4ikmal1 <denisreal725@gmail.com>
+Date:   Fri Mar 11 18:09:23 2016 +0200
+
+    add answer model, controller, add ajax query and add testing for answers
+
+[33mcommit 1290f85e1b412d67d7583cfbbf9bb2def6a7a6fe[m
+Author: Den4ikmal1 <denisreal725@gmail.com>
+Date:   Fri Mar 11 01:51:03 2016 +0200
+
+    add acceptance test and add in project gem devise plus add macros in spec_testing
+
+[33mcommit b8b2c04e9f92719ccfe9b50d97975f809f393153[m
+Author: Den4ikmal1 <denisreal725@gmail.com>
+Date:   Thu Mar 10 01:56:43 2016 +0200
+
+    add tests to questions controller
+
+[33mcommit 94ec46000f429d4d2b7523c5b68de75da29e7a64[m
+Author: Den4ikmal1 <denisreal725@gmail.com>
+Date:   Wed Mar 9 20:53:25 2016 +0200
+
+    Initial commit

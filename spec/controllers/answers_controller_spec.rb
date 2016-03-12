@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
+	let!(:question) { create :question }
 	describe "POST #create" do
-		let(:question) { create :question }
+		
 		context 'with valid attributes' do
 		  it 'saves the new answer in the database' do
 			expect { post :create, answer: attributes_for(:answer), question_id: question, format: :js }.to change(question.answers, :count).by(1)
@@ -22,5 +23,25 @@ RSpec.describe AnswersController, type: :controller do
 		    end
 		end
      end
-
+    describe "PATCH #update" do
+      let(:answer) {create(:answer, question: question) }
+          it 'assigns the requested answer to @question' do
+		  	patch :update, id: answer, question_id: question, answer: attributes_for(:answer), format: :js
+	  	    expect(assigns(:answer)).to eq answer	
+		  end
+		  it 'assigns the question' do 
+		  	patch :update, id: answer, question_id: question, answer: attributes_for(:answer), format: :js
+		  	expect(assigns(:question)).to eq question
+		  end
+		  it 'changes question attributes' do 
+		  	patch :update, id: answer, question_id: question, answer: { body: "MyText"}, format: :js
+		  	answer.reload
+		  	expect(question.body).to eq "MyText"
+		  end
+		   it 'render update template' do
+		    patch :update, id: answer, question_id: question, answer: attributes_for(:answer), format: :js
+	  	    expect(response).to render_template :update
+		  end
+		
+    end
 end

@@ -1,3 +1,4 @@
+.row
 h1= @question.title
 p= @question.body
 
@@ -6,5 +7,6 @@ p= @question.body
 
 = form_for [ @question, @answer], remote: true do |f|
  = f.label :body, "Your answer"
+ .answer_errors
  = f.text_area :body
- = f.submit 'Create'
+ p= f.submit 'Create'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311143027) do
+ActiveRecord::Schema.define(version: 20160312191927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,18 +19,32 @@ ActiveRecord::Schema.define(version: 20160311143027) do
   create_table "answers", force: :cascade do |t|
     t.text     "body"
     t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "creator_answer_id"
   end
 
+  add_index "answers", ["creator_answer_id"], name: "index_answers_on_creator_answer_id", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "file"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "question_id"
+  end
+
+  add_index "attachments", ["question_id"], name: "index_attachments_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "creator_question_id"
   end
+
+  add_index "questions", ["creator_question_id"], name: "index_questions_on_creator_question_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                          null: false
