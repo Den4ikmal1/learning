@@ -30,6 +30,8 @@ gem 'private_pub'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
+gem 'fog', '~> 1.36.0'
+gem 'paperclip'
 
 
 # Use ActiveModel has_secure_password
