@@ -8,8 +8,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-  	 @answer = @question.answers.build	
-    
+  	 @answer = @question.answers.build
+     @answer.attachments.build    
   end
 
   def new
@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-  	   	
+  	 	@answer.attachments.build 
   end
 
   def create
@@ -32,6 +32,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    @answer.attachments.build 
   	if @question.update_attributes(question_params)
   	  redirect_to @question
   	else 

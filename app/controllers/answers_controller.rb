@@ -3,6 +3,18 @@ class AnswersController < ApplicationController
 	def create
 		@question = Question.find(params[:question_id])
 		@answer = @question.answers.create(answer_params)
+        respond_to do |format|
+        if @answer.save
+            # format.json {render json: @answer }
+            format.js do
+            PrivatePub.publish_to "/questions/#{@question.id}/answers", answer: @answer.to_json
+            render nothing: true
+            end
+        else 
+            # format.json{ render json: @answer.errors.full_messages, status: :unprocessable_entity }
+            format.js 
+        end
+        end
     end
 
     def update
@@ -14,7 +26,7 @@ class AnswersController < ApplicationController
 	private
 
 	def answer_params
-      params.require(:answer).permit(:body)
+      params.require(:answer).permit(:body, attachments_attributes: [:file])
     end
 
 
