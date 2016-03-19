@@ -109,8 +109,16 @@ GEM
       websocket-driver (>= 0.5.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    has_scope (0.6.0)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
+    inherited_resources (1.6.0)
+      actionpack (>= 3.2, < 5)
+      has_scope (~> 0.6.0.rc)
+      railties (>= 3.2, < 5)
+      responders
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -270,6 +278,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   factory_girl_rails
+  inherited_resources
   jbuilder (~> 2.0)
   jquery-rails
   launchy
@@ -277,6 +286,7 @@ DEPENDENCIES
   private_pub
   rails (= 4.2.5.2)
   remotipart
+  responders
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

@@ -1,54 +1,46 @@
 class QuestionsController < ApplicationController
-	before_action :load_question, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_user!, except: [:index, :show]
+  before_action :load_question, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :build_answer, only: [:show]
+
+  respond_to :html
 
   def index
-  	@questions = Question.all
-  	
+    respond_with(@questions = Question.all)
   end
 
   def show
-  	 @answer = @question.answers.build
-     @answer.attachments.build    
+     respond_with @question
   end
 
   def new
- 	   @question = Question.new 	
-     @question.attachments.build
+    respond_with(@question = Question.new)
   end
 
   def edit
-  	 	@answer.attachments.build 
+      
   end
 
   def create
-  	@question = Question.create(question_params)
-  	if @question.save
-  	    redirect_to @question
-  	    flash[:success] = "Your question successfully created." 
-  	else
-      render :new
-    end
+    respond_with(@question = Question.create(question_params)) 
   end
 
   def update
-    @answer.attachments.build 
-  	if @question.update_attributes(question_params)
-  	  redirect_to @question
-  	else 
-  	  render :edit
-  	end
+    @question.update_attributes(question_params)
+    respond_with @question
   end
 
   def destroy
-  	@question.destroy
-  	redirect_to question_path
-  	
+    respond_with(@question.destroy)
   end
 
   private 
     def load_question
       @question = Question.find(params[:id]) 
+    end
+
+    def build_answer
+       @answer = @question.answers.build
     end
 
     def question_params

@@ -8,9 +8,9 @@ RSpec.describe AnswersController, type: :controller do
 		  it 'saves the new answer in the database' do
 			expect { post :create, answer: attributes_for(:answer), question_id: question, format: :js }.to change(question.answers, :count).by(1)
 		  end
-		  it 'render create templates' do
+		  it 'render nothing' do
 		  	post :create, answer: attributes_for(:answer), question_id: question, format: :js
-			expect(response).to render_template :create
+			expect(response.body).to be_blank
 		  end
 		end
 		context 'with invalid attributes' do

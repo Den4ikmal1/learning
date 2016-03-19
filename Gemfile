@@ -30,7 +30,8 @@ gem 'private_pub'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
-
+gem 'inherited_resources'
+gem 'responders'
 
 
 # Use ActiveModel has_secure_password
