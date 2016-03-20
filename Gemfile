@@ -32,6 +32,10 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
 gem 'inherited_resources'
 gem 'responders'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
+gem 'cancancan'
 
 
 # Use ActiveModel has_secure_password
