@@ -36,6 +36,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'cancancan'
+gem 'doorkeeper'
 
 
 # Use ActiveModel has_secure_password

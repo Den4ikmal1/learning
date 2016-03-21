@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :vkontakte]
 
-  validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
 
   has_many :authorizations
   has_many :creator_questions, foreign_key: :creator_question_id, class_name: "Question"
@@ -21,16 +21,13 @@ class User < ActiveRecord::Base
       email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
       email = auth.info.email if email_is_verified
       user = User.where(email: email).first if email
-
-  	 
-  	if user.nil?
+  	  if user.nil?
         user = User.new(
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20])
-        
-       
-        user.save!
-    end
+        user.skip_confirmation!
+         user.save!
+      end
     end
     if authorization.user != user
       authorization.user = user
