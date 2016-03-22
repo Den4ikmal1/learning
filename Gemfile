@@ -37,6 +37,9 @@ gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'cancancan'
 gem 'doorkeeper'
+gem 'active_model_serializers'
+gem 'oj'
+gem 'oj_mimic_json'
 
 
 # Use ActiveModel has_secure_password
@@ -55,6 +58,7 @@ group :test do
    gem 'shoulda-matchers',  :require => false
    gem 'capybara'
    gem 'launchy'
+   gem 'json_spec'
   
    # gem 'capybara-webkit'
 end

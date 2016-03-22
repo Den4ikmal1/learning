@@ -12,7 +12,14 @@ Rails.application.routes.draw do
     resources :answers, concerns: :commentable
   end
 
-  
+  namespace :api do
+    namespace :v1 do
+      resources :profiles do
+        get :me, on: :collection
+      end
+      resources :questions 
+    end
+  end  
   
   root to: "questions#index"
   # The priority is based upon order of creation: first created -> highest priority.

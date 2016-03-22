@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
 
   has_many :authorizations
-  has_many :creator_questions, foreign_key: :creator_question_id, class_name: "Question"
+  has_many :questions
   has_many :creator_answers, foreign_key: :creator_answer_id, class_name: "Answer"
 
   def self.find_for_ouath(auth, signed_in_resource = nil)

@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
 
-	belongs_to :creator_question
+	belongs_to :user
 	has_many :attachments, as: :attachmentable
 	has_many :answers
 	has_many :comments, as: :commentable
