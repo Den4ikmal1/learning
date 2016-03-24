@@ -40,6 +40,12 @@ gem 'doorkeeper'
 gem 'active_model_serializers'
 gem 'oj'
 gem 'oj_mimic_json'
+#gem 'delayed_job_active_record'
+gem 'whenever'
+gem 'sidekiq'
+gem 'sidetiq'
+gem 'redis-rails'
+
 
 
 # Use ActiveModel has_secure_password
@@ -59,7 +65,6 @@ group :test do
    gem 'capybara'
    gem 'launchy'
    gem 'json_spec'
-  
    # gem 'capybara-webkit'
 end
 group :development, :test do

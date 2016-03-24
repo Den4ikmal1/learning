@@ -8,8 +8,7 @@ class QuestionsController < ApplicationController
   authorize_resource
 
   def index
-    
-    respond_with(@questions = Question.all)
+   respond_with(@questions = Question.all)
   end
 
   def show
@@ -38,7 +37,10 @@ class QuestionsController < ApplicationController
     respond_with(@question.destroy)
   end
 
+
+
   private 
+
     def load_question
       @question = Question.find(params[:id]) 
     end

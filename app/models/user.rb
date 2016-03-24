@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable,  :confirmable,
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :vkontakte]
 
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :authorizations
   has_many :questions
-  has_many :creator_answers, foreign_key: :creator_answer_id, class_name: "Answer"
+  has_many :answers
 
   def self.find_for_ouath(auth, signed_in_resource = nil)
   	authorization = Authorization.find_for_ouath(auth)
@@ -25,8 +25,7 @@ class User < ActiveRecord::Base
         user = User.new(
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20])
-        user.skip_confirmation!
-         user.save!
+        user.save!
       end
     end
     if authorization.user != user
@@ -38,6 +37,12 @@ class User < ActiveRecord::Base
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
+
+  def self.send_daily_digest
+    find_each.each do |user|
+      DailyMailer.delay.digest(user)
+    end
   end
 
 end

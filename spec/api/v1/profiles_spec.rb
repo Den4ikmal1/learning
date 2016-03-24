@@ -2,16 +2,9 @@ require 'rails_helper'
 
 describe 'Prifile API' do 
   describe 'GET /me' do
-  	context  'unauthorized' do
-  		it 'returns 401 status if there is no access_token' do
-           get '/api/v1/profiles/me', format: :json
-           expect(response.status).to eq 401
-  		end
-  		it 'returns 401 status if there is invalid token' do
-           get '/api/v1/profiles/me', format: :json, access_token: "1234"
-           expect(response.status).to eq 401
-  		end
-  	end
+   
+   it_behaves_like "API Authenticable"
+
    context 'authorized' do
     let(:me) { create(:user) }
     let(:access_token) { create(:access_token, resource_owner_id: me.id) }
@@ -35,5 +28,8 @@ describe 'Prifile API' do
     end
   		
   	end
+  	def do_request(options = {})
+    	get '/api/v1/profiles/me', { format: :json }.merge(options)
+    end 
   end
 end

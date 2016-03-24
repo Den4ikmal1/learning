@@ -19,9 +19,12 @@ Rails.application.routes.draw do
       end
       resources :questions 
     end
-  end  
+  end
+  # get 'search_result' => 'searchs#search', as: :search
+  # get 'questions_search' => 'questions#search' 
   
   root to: "questions#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
